@@ -6,7 +6,13 @@
         <span class="profile-link">
           <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
         </span>
+        <span class='friend-invite-link'>
+          <a href='#'>Request Friendship</a>
+        </span>
       </li>
+    <% end %>
+    <% @friendships.each do |f| %>
+      <%= f.user_id %>
     <% end %>
   </ul>
 </section>
