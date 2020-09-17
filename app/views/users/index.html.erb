@@ -12,14 +12,18 @@
           <%= form_with model: @friendship, url: friend_request_path do |f| %>
             <%= f.hidden_field :friend_id, :value => user.id %>
             <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.hidden_field :status, :value => 'pending' %>
             <%= f.submit  'Request'%>
           <% end %>
+
 
         </span>
       </li>
     <% end %>
     <% @friendships.each do |f| %>
       <%= f.friend_id %>
+      <%= f.status %>
+      
     <% end %>
   </ul>
 </section>

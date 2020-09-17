@@ -14,14 +14,14 @@ class UsersController < ApplicationController
   end
 
   def friend_requests
-    @friendship = Friendship.new(friend_params)
+    @friendship = Friendship.create(friend_params)
 
-    @friendship.save
+    redirect_to users_url
   end
 
   private
 
   def friend_params
-    params.require(:friendship).permit(:friend_id, :user_id)
+    params.require(:friendship).permit(:friend_id, :user_id, :status)
   end
 end
