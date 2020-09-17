@@ -7,12 +7,19 @@
           <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
         </span>
         <span class='friend-invite-link'>
-          <a href='#'>Request Friendship</a>
+
+
+          <%= form_with model: @friendship, url: friend_request_path do |f| %>
+            <%= f.hidden_field :friend_id, :value => user.id %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.submit  'Request'%>
+          <% end %>
+
         </span>
       </li>
     <% end %>
     <% @friendships.each do |f| %>
-      <%= f.user_id %>
+      <%= f.friend_id %>
     <% end %>
   </ul>
 </section>
