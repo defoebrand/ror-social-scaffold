@@ -5,6 +5,18 @@ class UsersController < ApplicationController
     @users = User.all
     @friendships = Friendship.all
     @friendship = Friendship.new
+    @friends = @friendships.select { |x| x.user_id == current_user.id }
+    # @not_friends = @users.each do |x|
+    #   if x.id != current_user.id
+    #     if @friends.empty?
+    #       x.id
+    #     else
+    #       @friends.each do |y|
+    #         x.id unless x.id == y.friend_id
+    #       end
+    #     end
+    #   end
+    # end
     # @user = current_user
   end
 

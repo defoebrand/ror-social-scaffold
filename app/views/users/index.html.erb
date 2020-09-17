@@ -2,28 +2,57 @@
   <ul class="users-list">
     <% @users.each do |user| %>
       <li>
+        <% unless user.name == current_user.name %>
         Name: <%= user.name %>
         <span class="profile-link">
           <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
         </span>
         <span class='friend-invite-link'>
 
+      <% unless Friendship.find_by(friend_id: user.id) %>
+        <%= form_with model: @friendship, url: friend_request_path do |f| %>
+          <%= f.hidden_field :friend_id, :value => user.id %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.hidden_field :status, :value => 'pending' %>
 
-          <%= form_with model: @friendship, url: friend_request_path do |f| %>
-            <%= f.hidden_field :friend_id, :value => user.id %>
-            <%= f.hidden_field :user_id, :value => current_user.id %>
-            <%= f.hidden_field :status, :value => 'pending' %>
+
+
+          <% if @friends.empty? %>
             <%= f.submit  'Request'%>
+          <% else %>
+              <% if Friendship.find_by(friend_id: user.id) %>
+                <%= "Pending" %>
+              <% else %>
+                <%= f.submit  'Request'%>
+              <% end %>
           <% end %>
+        <% end %>
+      <% end %>
 
-
+      <% end %>
         </span>
       </li>
     <% end %>
-    <% @friendships.each do |f| %>
-      <%= f.friend_id %>
+
+    <% @friends.each do |f| %>
+      <%= f.friend.name %>
       <%= f.status %>
-      
+      <br>
     <% end %>
+
+  <% @users.each do |x| %>
+    <% if x.id != current_user.id %>
+      <% if @friends.empty? %>
+        <%= x.id %>
+      <% else %>
+        <% @friends.each do |y| %>
+          <% unless Friendship.find_by(friend_id: x.id) %>
+            <%= x.id %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
   </ul>
 </section>
