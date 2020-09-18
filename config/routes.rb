@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   end
 
   post '/friend_request', :to => 'users#friend_requests'
+  patch '/accept_request', :to => 'users#accept_request'
+  # put '/accept_request', :to => 'users#accept_request'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
