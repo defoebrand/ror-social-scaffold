@@ -1,5 +1,21 @@
 <section class="user-section">
   <h2><%= "Name: #{@user.name}" %></h2>
+
+  <% unless Friendship.find_by(friend_id: @user.id) %>
+    <%= form_with model: @friendship, url: friend_request_path do |f| %>
+      <%= f.hidden_field :friend_id, :value => @user.id %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :status, :value => 'pending' %>
+        <%= f.submit  'Request'%>
+        <% end %>
+        <% end %>
+
+        <% @friends.each do |f| %>
+          <%= f.friend.name %>
+          <%= f.status %>
+          <br>
+        <% end %>
+
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">

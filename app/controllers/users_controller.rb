@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @friendships = Friendship.all
     @friendship = Friendship.new
     @friends = @friendships.select { |x| x.user_id == current_user.id }
+    @friend_requests = @friendships.select { |x| x.friend_id == current_user.id }
     # @not_friends = @users.each do |x|
     #   if x.id != current_user.id
     #     if @friends.empty?
@@ -23,12 +24,15 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.ordered_by_most_recent
+    @friendship = Friendship.new
+    @friendships = Friendship.all
+    @friends = @friendships.select { |x| x.user_id == current_user.id }
   end
 
   def friend_requests
     @friendship = Friendship.create(friend_params)
 
-    redirect_to users_url
+    redirect_to request.referrer
   end
 
   private
