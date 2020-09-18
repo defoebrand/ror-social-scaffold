@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @users = User.all
     @friendships = Friendship.all
     @friendship = Friendship.new
-    @friends = @friendships.select { |x| x.user_id == current_user.id }
+    @friends = @friendships.select { |x| (x.user_id == current_user.id) || (x.friend_id == current_user.id) }
     @friend_requests = @friendships.select { |x| x.friend_id == current_user.id }
     # @not_friends = @users.each do |x|
     #   if x.id != current_user.id
@@ -35,9 +35,29 @@ class UsersController < ApplicationController
     redirect_to request.referrer
   end
 
+  def accept_request
+    # respond_to do |format|
+    #   if @user.update(user_params)
+    #     format.html { redirect_to @user, notice: 'User was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @user }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @user.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
+    @friendship = Friendship.find(friend_params[:id])
+
+    if @friendship.update_attributes(friend_params)
+      redirect_to action: 'index', id: current_user
+    else
+      redirect_to users_path
+    end
+  end
+
   private
 
   def friend_params
-    params.require(:friendship).permit(:friend_id, :user_id, :status)
+    params.require(:friendship).permit(:id, :friend_id, :user_id, :status)
   end
 end
