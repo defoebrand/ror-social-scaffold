@@ -16,6 +16,36 @@
           <br>
         <% end %>
 
+
+          <%# friend = Friendship.find_by(friend_id: current_user.id, user_id: user.id) %>
+          <% friend = Friendship.find_by(friend_id: current_user.id) %>
+          <% if friend %>
+          <%= "#{friend.user.name} requested to be your friend"%>
+          <% end %>
+          <% if friend && friend.status == 'pending' %>
+            <%= form_with model: friend, url: accept_request_path do |f| %>
+              <%= f.hidden_field :id, :value => friend.id %>
+              <%= f.hidden_field :status, :value => 'confirmed' %>
+              <%= f.submit  'Accept' %>
+            <% end %>
+            <%= form_with model: friend, url: accept_request_path do |f| %>
+              <%= f.hidden_field :id, :value => friend.id %>
+              <%= f.hidden_field :status, :value => 'denied' %>
+              <%= f.submit  'Reject' %>
+            <% end %>
+          <% elsif friend && (friend.status == 'denied' || friend.status == 'confirmed') %>
+            <%= form_with model: friend, url: accept_request_path do |f| %>
+              <%= f.submit  friend.status %>
+              <% end %>
+          <% else %>
+            <% friend = Friendship.find_by(friend_id: @user.id, user_id: current_user.id) %>
+              <% if friend %>
+                <%= form_with model: friend, url: accept_request_path do |f| %>
+                  <%= f.submit  friend.status %>
+                <% end %>
+              <% end %>
+            <% end %>
+
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">

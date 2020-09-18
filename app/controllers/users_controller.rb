@@ -36,23 +36,9 @@ class UsersController < ApplicationController
   end
 
   def accept_request
-    # respond_to do |format|
-    #   if @user.update(user_params)
-    #     format.html { redirect_to @user, notice: 'User was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @user }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @user.errors, status: :unprocessable_entity }
-    #   end
-    # end
-
     @friendship = Friendship.find(friend_params[:id])
-
-    if @friendship.update_attributes(friend_params)
-      redirect_to action: 'index', id: current_user
-    else
-      redirect_to users_path
-    end
+    @friendship.update_attributes(friend_params)
+    redirect_to request.referrer
   end
 
   private
