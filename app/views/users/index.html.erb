@@ -1,48 +1,17 @@
 <section class="users-section">
   <ul class="users-list">
-    <% @users.each do |user| %>
+    <% @others.each do |user| %>
       <li>
-        <% unless user.name == current_user.name %>
         Name: <%= user.name %>
         <span class="profile-link">
           <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
         </span>
         <span class='friend-invite-link'>
 
-      <% unless @friends.any? {|x| (x.friend_id == user.id) || (x.user_id == user.id) }  %>
-        <%= form_with model: @friendship, url: friend_request_path do |f| %>
-          <%= f.hidden_field :friend_id, :value => user.id %>
-          <%= f.hidden_field :user_id, :value => current_user.id %>
-          <%= f.hidden_field :status, :value => 'pending' %>
-          <%= f.submit  'Request'%>
-        <% end %>
-      <% else  %>
-        <% friend = Friendship.find_by(friend_id: current_user.id, user_id: user.id) %>
-        <% if friend && friend.status == 'pending' %>
-          <%= form_with model: friend, url: accept_request_path do |f| %>
-            <%= f.hidden_field :id, :value => friend.id %>
-            <%= f.hidden_field :status, :value => 'confirmed' %>
-            <%= f.submit  'Accept' %>
-          <% end %>
-          <%= form_with model: friend, url: accept_request_path do |f| %>
-            <%= f.hidden_field :id, :value => friend.id %>
-            <%= f.hidden_field :status, :value => 'denied' %>
-            <%= f.submit  'Reject' %>
-          <% end %>
-        <% elsif friend && (friend.status == 'denied' || friend.status == 'confirmed') %>
-          <%= form_with model: friend, url: accept_request_path do |f| %>
-            <%= f.submit  friend.status %>
-            <% end %>
-        <% else %>
-          <% friend = Friendship.find_by(friend_id: user.id, user_id: current_user.id) %>
-            <% if friend %>
-              <%= form_with model: friend, url: accept_request_path do |f| %>
-                <%= f.submit  friend.status %>
-              <% end %>
-            <% end %>
-          <% end %>
-        <% end %>
-      <% end %>
+        
+        <%= friend_status(user) %>
+
+
         </span>
       </li>
     <% end %>

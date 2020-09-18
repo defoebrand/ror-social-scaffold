@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @others = @users.select {|f| f.id != current_user.id}
     @friendships = Friendship.all
     @friendship = Friendship.new
     @friends = @friendships.select { |x| (x.user_id == current_user.id) || (x.friend_id == current_user.id) }
