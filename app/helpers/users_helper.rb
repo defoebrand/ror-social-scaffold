@@ -22,7 +22,15 @@ module UsersHelper
 
   def button_selector(content, user)
     friend = Friendship.find_by(friend_id: current_user.id, user_id: user.id)
-    if friend and friend.status == 'pending'
+    if friend
+      friend_requests(friend, content, user)
+    else
+      my_requests(content, user)
+    end
+  end
+
+  def friend_requests(friend, content, _user)
+    if friend.status == 'pending'
       content << content_tag(:p, "#{friend.user.name} requested to be your friend")
       content << tag(:br)
       content << button_to('Accept', { controller: 'friendships',
@@ -34,13 +42,14 @@ module UsersHelper
                                        action: 'update',
                                        id: friend.id,
                                        status: 'denied' }, method: :put)
-    elsif friend and (friend.status == 'denied' or friend.status == 'confirmed')
+    elsif friend.status == 'denied' or friend.status == 'confirmed'
       content << content_tag(:p, "Request #{friend.status}", class: 'status')
-
-    else
-      friend = Friendship.find_by(friend_id: user.id, user_id: current_user.id)
-      content << content_tag(:p, "Request #{friend.status}", class: 'status') if friend
     end
+  end
+
+  def my_requests(content, user)
+    friend = Friendship.find_by(friend_id: user.id, user_id: current_user.id)
+    content << content_tag(:p, "Request #{friend.status}", class: 'status') if friend
   end
 
   def request_button(content, user)
