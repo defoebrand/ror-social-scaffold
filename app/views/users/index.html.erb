@@ -2,14 +2,14 @@
   <ul class="users-list">
     <% @others.each do |user| %>
       <li>
-        Name: <%= user.name %>
-        <span class="profile-link">
-          <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
-        </span>
+        @<%= user.name %>
+        <div class="profile-link">
+          <%= link_to 'View Profile',  user_path(user), class: 'profile-link' %>
+        </div>
         <span class='friend-invite-link'>
 
         
-        <%= friend_status(user) %>
+        <%= friend_status_index(user) %>
 
 
         </span>
