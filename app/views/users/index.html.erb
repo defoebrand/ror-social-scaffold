@@ -1,7 +1,7 @@
 <section class="users-section">
   <ul class="users-list">
     <% @others.each do |user| %>
-      <li>
+      <li class='card'>
         @<%= user.name %>
         <div class="profile-link">
           <%= link_to 'View Profile',  user_path(user), class: 'profile-link' %>

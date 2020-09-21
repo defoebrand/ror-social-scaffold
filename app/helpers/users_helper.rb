@@ -3,7 +3,7 @@ module UsersHelper
   def friend_status_index(user)
     @status = tag(:div, class: 'status-btn-tag')
     unless @friends.any? {|f| f.friend_id == user.id or f.user_id == user.id}
-      @status << button_to('Request', {:controller => 'friendships', 
+      @status << button_to('Request Friendship', {:controller => 'friendships', 
         :action => 'create', 
         :user_id => current_user.id, 
         :friend_id => user.id,
@@ -24,11 +24,11 @@ module UsersHelper
           :status => 'denied'
           }, :method => :put)
       elsif friend && (friend.status == 'denied' || friend.status == 'confirmed')
-        @status << content_tag(:p, friend.status)
+        @status << content_tag(:p, "Request #{friend.status}", class: 'status')
       else  
         friend = Friendship.find_by(friend_id: user.id, user_id: current_user.id)
         if friend
-          @status << content_tag(:p, friend.status)
+          @status << content_tag(:p, "Request #{friend.status}", class: 'status')
         end
       end
     end
@@ -40,7 +40,7 @@ module UsersHelper
     friendship_status = Friendship.find_by(friend_id: user.id)
     @status = tag(:div)
     unless friendship_status
-      @status << button_to('Request', {:controller => 'friendships', 
+      @status << button_to('Request Friendship', {:controller => 'friendships', 
         :action => 'create', 
         :user_id => current_user.id, 
         :friend_id => user.id,
@@ -68,11 +68,11 @@ module UsersHelper
         :status => 'denied'
         }, :method => :put)
     elsif friend and (friend.status == 'denied' or friend.status == 'confirmed')
-      @content << content_tag(:p, friend.status)
+      @content << content_tag(:p, "Request #{friend.status}", class: 'status')
     else  
       friend = Friendship.find_by(friend_id: @user.id, user_id: current_user.id)
       if friend
-        @content << content_tag(:p, friend.status)
+        @content << content_tag(:p, "Request #{friend.status}", class: 'status')
       end
     end
     @content.html_safe
