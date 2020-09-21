@@ -13,19 +13,15 @@ module UsersHelper
 
   def button_changer(content, user)
     if @friends.any? { |f| f.friend_id == user.id or f.user_id == user.id }
-      friend = Friendship.find_by(friend_id: current_user.id, user_id: user.id)
-      button_selector(friend, content)
+      button_selector(content, user)
     else
-      content << button_to('Request Friendship', { controller: 'friendships',
-                                                   action: 'create',
-                                                   user_id: current_user.id,
-                                                   friend_id: user.id }, method: :post)
-      content.html_safe
+      request_button(content, user)
     end
     content
   end
 
-  def button_selector(friend, content)
+  def button_selector(content, user)
+    friend = Friendship.find_by(friend_id: current_user.id, user_id: user.id)
     if friend and friend.status == 'pending'
       content << content_tag(:p, "#{friend.user.name} requested to be your friend")
       content << tag(:br)
@@ -45,5 +41,13 @@ module UsersHelper
       friend = Friendship.find_by(friend_id: user.id, user_id: current_user.id)
       content << content_tag(:p, "Request #{friend.status}", class: 'status') if friend
     end
+  end
+
+  def request_button(content, user)
+    content << button_to('Request Friendship', { controller: 'friendships',
+                                                 action: 'create',
+                                                 user_id: current_user.id,
+                                                 friend_id: user.id }, method: :post)
+    content.html_safe
   end
 end
