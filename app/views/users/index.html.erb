@@ -3,39 +3,17 @@
     <% @others.each do |user| %>
       <li class='card'>
         @<%= user.name %>
+
         <div class="profile-link">
           <%= link_to 'View Profile',  user_path(user), class: 'profile-link' %>
         </div>
+
         <span class='friend-invite-link'>
-
-        
-        <%= friend_status_index(user) %>
-
-
+          <%= friend_status_index(user) %>
         </span>
+
       </li>
     <% end %>
-
-
-    <% @friend_requests.each do |f| %>
-      <%= f.user.name %>
-        <%= f.status %>
-      <br>
-    <% end %>
-
-  <%# @users.each do |x| %>
-    <%# if x.id != current_user.id %>
-      <%# if @friends.empty? %>
-        <%# x.name %>
-      <%# else %>
-        <%# @friends.each do |y| %>
-          <%# unless Friendship.find_by(friend_id: x.id) %>
-            <%# x.name %>
-          <%# end %>
-        <%# end %>
-      <%# end %>
-    <%# end %>
-  <%# end %>
 
   </ul>
 </section>

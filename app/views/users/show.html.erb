@@ -1,54 +1,7 @@
 <section class="user-section">
   <h2><%= "@#{@user.name}" %></h2>
 
-  <%= friend_request_show(@user) %>
-  <%= friend_status_show(@user) %>
-
-  <!-- <% unless Friendship.find_by(friend_id: @user.id) %>
-    <%= form_with model: @friendship, url: friend_request_path do |f| %>
-      <%= f.hidden_field :friend_id, :value => @user.id %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <%= f.hidden_field :status, :value => 'pending' %>
-        <%= f.submit  'Request'%>
-        <% end %>
-        <% end %>
-
-        <% @friends.each do |f| %>
-          <%= f.friend.name %>
-          <%= f.status %>
-          <br>
-        <% end %> 
-        <hr>
-
-
-          <%# friend = Friendship.find_by(friend_id: current_user.id, user_id: user.id) %>
-          <% friend = Friendship.find_by(friend_id: current_user.id) %>
-          <% if friend %>
-          <%= "#{friend.user.name} requested to be your friend"%>
-          <% end %>
-          <% if friend && friend.status == 'pending' %>
-            <%= form_with model: friend, url: accept_request_path do |f| %>
-              <%= f.hidden_field :id, :value => friend.id %>
-              <%= f.hidden_field :status, :value => 'confirmed' %>
-              <%= f.submit  'Accept' %>
-            <% end %>
-            <%= form_with model: friend, url: accept_request_path do |f| %>
-              <%= f.hidden_field :id, :value => friend.id %>
-              <%= f.hidden_field :status, :value => 'denied' %>
-              <%= f.submit  'Reject' %>
-            <% end %>
-          <% elsif friend && (friend.status == 'denied' || friend.status == 'confirmed') %>
-            <%= form_with model: friend, url: accept_request_path do |f| %>
-              <%= f.submit  friend.status %>
-              <% end %>
-          <% else %>
-            <% friend = Friendship.find_by(friend_id: @user.id, user_id: current_user.id) %>
-              <% if friend %>
-                <%= form_with model: friend, url: accept_request_path do |f| %>
-                  <%= f.submit  friend.status %>
-                <% end %>
-              <% end %>
-            <% end %> -->
+  <%= friend_response_show(@user) %>
 
   <article class="timeline">
     <h3>Recent posts:</h3>
