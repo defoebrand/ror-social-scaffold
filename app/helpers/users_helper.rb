@@ -14,25 +14,7 @@ module UsersHelper
   def button_changer(content, user)
     if @friends.any? { |f| f.friend_id == user.id or f.user_id == user.id }
       friend = Friendship.find_by(friend_id: current_user.id, user_id: user.id)
-      if friend and friend.status == 'pending'
-        content << content_tag(:p, "#{friend.user.name} requested to be your friend")
-        content << tag(:br)
-        content << button_to('Accept', { controller: 'friendships',
-                                         action: 'update',
-                                         id: friend.id,
-                                         status: 'confirmed' }, method: :put)
-
-        content << button_to('Reject', { controller: 'friendships',
-                                         action: 'update',
-                                         id: friend.id,
-                                         status: 'denied' }, method: :put)
-      elsif friend and (friend.status == 'denied' or friend.status == 'confirmed')
-        content << content_tag(:p, "Request #{friend.status}", class: 'status')
-
-      else
-        friend = Friendship.find_by(friend_id: user.id, user_id: current_user.id)
-        content << content_tag(:p, "Request #{friend.status}", class: 'status') if friend
-      end
+      button_selector(friend, content)
     else
       content << button_to('Request Friendship', { controller: 'friendships',
                                                    action: 'create',
@@ -41,5 +23,27 @@ module UsersHelper
       content.html_safe
     end
     content
+  end
+
+  def button_selector(friend, content)
+    if friend and friend.status == 'pending'
+      content << content_tag(:p, "#{friend.user.name} requested to be your friend")
+      content << tag(:br)
+      content << button_to('Accept', { controller: 'friendships',
+                                       action: 'update',
+                                       id: friend.id,
+                                       status: 'confirmed' }, method: :put)
+
+      content << button_to('Reject', { controller: 'friendships',
+                                       action: 'update',
+                                       id: friend.id,
+                                       status: 'denied' }, method: :put)
+    elsif friend and (friend.status == 'denied' or friend.status == 'confirmed')
+      content << content_tag(:p, "Request #{friend.status}", class: 'status')
+
+    else
+      friend = Friendship.find_by(friend_id: user.id, user_id: current_user.id)
+      content << content_tag(:p, "Request #{friend.status}", class: 'status') if friend
+    end
   end
 end
