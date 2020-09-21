@@ -15,12 +15,4 @@ class FriendshipsController < ApplicationController
     end
   end
 
-  # def reject
-  #   @friend = Friendship.find(params[:id, :status])
-  #   @friend.status = params[:status]
-  #   if @friend.save!
-  #     redirect_to request.referrer
-  #   end
-  # end
-
 end
