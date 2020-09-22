@@ -29,7 +29,7 @@ module UsersHelper
     end
   end
 
-  def friend_requests(friend, content, _user)
+  def friend_requests(friend, content, user)
     if friend.status == 'pending'
       content << content_tag(:p, "#{friend.user.name} requested to be your friend")
       content << tag(:br)
@@ -42,8 +42,11 @@ module UsersHelper
                                        action: 'update',
                                        id: friend.id,
                                        status: 'denied' }, method: :put)
-    elsif friend.status == 'denied' or friend.status == 'confirmed'
+    elsif friend.status == 'confirmed'
       content << content_tag(:p, "Request #{friend.status}", class: 'status')
+    elsif friend.status == 'denied'
+      friend.destroy
+      request_button(content, user)
     end
   end
 
