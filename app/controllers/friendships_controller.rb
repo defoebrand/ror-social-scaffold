@@ -8,6 +8,7 @@ class FriendshipsController < ApplicationController
   def update
     @friend = Friendship.find(params[:id])
     @friend.status = params[:status]
+    @friendship = Friendship.create(user_id: params[:friend_id], friend_id: params[:user_id], status: 'confirmed')
     redirect_to request.referrer if @friend.save!
   end
 end
