@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   private
 
   def timeline_posts
-    friend_list = []
+    friend_list = [current_user.id]
     friends = Friendship.all.select do |x|
       (x.user_id == current_user.id) ||
         (x.friend_id == current_user.id)
@@ -30,7 +30,6 @@ class PostsController < ApplicationController
         friend_list << x.user_id
         friend_list << x.friend_id
       end
-      friend_list << current_user.id unless friend_list.include?(current_user)
     end
     @timeline_posts ||= Post.all.where(user_id: friend_list).ordered_by_most_recent.includes(:user)
   end
