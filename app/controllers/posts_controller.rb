@@ -21,10 +21,11 @@ class PostsController < ApplicationController
 
   def timeline_posts
     friend_list = []
-    Friendship.all.select do |x|
+    friends = Friendship.all.select do |x|
       (x.user_id == current_user.id) ||
         (x.friend_id == current_user.id)
-    end .each do |x|
+    end
+    friends.each do |x|
       friend_list << x.user_id
       friend_list << x.friend_id
     end
