@@ -27,4 +27,20 @@ RSpec.feature "Friendships", type: :feature do
         
     expect {click_button 'Request Friendship'}.to change(Friendship, :count).by(1)
   end
+
+  it 'confirms friendship upon acceptance' do    
+    new_friend = Friendship.create(user_id: 2, friend_id: 1, status: 'pending')
+    visit users_path 
+    
+    click_button 'Accept'
+    expect(page).to have_content('Request confirmed')
+  end
+
+  it 'denies friendship upon acceptance' do    
+    new_friend = Friendship.create(user_id: 2, friend_id: 1, status: 'pending')
+    visit users_path 
+    
+    click_button 'Reject'
+    expect(page).to have_content('Request denied')
+  end
 end
