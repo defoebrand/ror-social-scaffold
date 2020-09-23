@@ -10,7 +10,8 @@ RSpec.describe PostsController, type: :controller do
 
   describe 'when a user is logged in' do
     it 'returns a successful response after signing in' do
-      user = User.create(name: 'testuser', email: 'test@test.com', password: 'passwordpass', password_confirmation: 'passwordpass')
+      user = User.create(name: 'testuser', email: 'test@test.com',
+                         password: 'passwordpass', password_confirmation: 'passwordpass')
       sign_in user
       get :index
 
