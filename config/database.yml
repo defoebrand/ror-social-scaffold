@@ -24,8 +24,8 @@ default: &default
 development:
   <<: *default
   database: ror_social_scaffold_development
-  username: admin
-  password: admin
+  # username: admin
+  # password: admin
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -85,5 +85,5 @@ test:
 production:
   <<: *default
   database: ror_social_scaffold_production
-  username: admin
-  password: admin
+  # username: admin
+  # password: admin

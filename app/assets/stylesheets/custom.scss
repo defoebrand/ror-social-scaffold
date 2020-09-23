@@ -189,10 +189,7 @@ form {
     color: #fff;
     cursor: pointer;
     justify-content: center;
-    padding-bottom: calc(0.5em - 1px);
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-top: calc(0.5em - 1px);
+    padding: calc(0.5em - 1px) 1em;
     text-align: center;
     white-space: nowrap;
   }
@@ -212,6 +209,28 @@ form {
   text-align: center;
   margin-bottom: 16px;
   text-transform: capitalize;
+}
+
+.status-btn-tag {
+  p {
+    margin: auto;
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  display: flex;
+
+  form {
+    width: 90px;
+  }
+
+  input[type='submit'] {
+    min-width: 80px;
+  }
+
+  input[type='submit']:hover {
+    cursor: pointer;
+  }
 }
 
 .timeline {
@@ -309,22 +328,6 @@ form {
     font-size: 0.8em;
     margin: 10px 0 8px;
     color: $primary-color-dark;
-  }
-}
-
-.status-btn-tag {
-  display: flex;
-
-  form {
-    width: 90px;
-  }
-
-  input[type='submit'] {
-    min-width: 80px;
-  }
-
-  input[type='submit']:hover {
-    cursor: pointer;
   }
 }
 

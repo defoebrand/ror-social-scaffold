@@ -36,6 +36,8 @@ module UsersHelper
       content << button_to('Accept', { controller: 'friendships',
                                        action: 'update',
                                        id: friend.id,
+                                       friend_id: friend.friend_id,
+                                       user_id: friend.user_id,
                                        status: 'confirmed' }, method: :put)
 
       content << button_to('Reject', { controller: 'friendships',
