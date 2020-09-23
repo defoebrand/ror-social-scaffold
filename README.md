@@ -1,16 +1,17 @@
-# Scaffold for social media app with Ruby on Rails
+# Social media app built with Ruby on Rails
 
-> This repo includes intial code for social media app with basic styling. Its purpose is to be a starting point for Microverse students.
+> A social media app built to practice creating applications with Ruby on Rails.
+
+![screenshot](public/screenshot.png)
 
 ## Built With
 
-- Ruby v2.7.0
-- Ruby on Rails v5.2.4
+-   Ruby
+-   Ruby on Rails
 
 ## Live Demo
 
-TBA
-
+[Live Link](https://immense-mountain-95079.herokuapp.com/)
 
 ## Getting Started
 
@@ -18,66 +19,55 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-Ruby: 2.6.3
-Rails: 5.2.3
+Ruby: 2.7
+Rails: 6
 Postgres: >=9.5
 
 ### Setup
 
 Instal gems with:
 
-```
-bundle install
-```
+    bundle install
 
 Setup database with:
 
-```
-   rails db:create
-   rails db:migrate
-```
+       rails db:create
+       rails db:migrate
 
 ### Github Actions
 
 To make sure the linters' checks using Github Actions work properly, you should follow the next steps:
 
-1. On your recently forked repo, enable the GitHub Actions in the Actions tab.
-2. Create the `feature/branch` and push.
-3. Start working on your milestone as usual.
-4. Open a PR from the `feature/branch` when your work is done.
-
+1.  On your recently forked repo, enable the GitHub Actions in the Actions tab.
+2.  Create the `feature/branch` and push.
+3.  Start working on your milestone as usual.
+4.  Open a PR from the `feature/branch` when your work is done.
 
 ### Usage
 
 Start server with:
 
-```
-    rails server
-```
+        rails server
 
 Open `http://localhost:3000/` in your browser.
 
 ### Run tests
 
-```
-    rpsec --format documentation
-```
+> To run tests open the terminal and run `bundle exec rspec`
 
-> Tests will be added by Microverse students. There are no tests for initial features in order to make sure that students write all tests from scratch.
-
-### Deployment
-
-TBA
+        rpsec --format documentation
 
 ## Authors
 
-TBA
+👤 **Mark Rode**
 
-## 🤝 Contributing
+-   Github: [@m15e](https://github.com/m15e)
 
-Contributions, issues and feature requests are welcome!
+👤 **Brandon Defoe**
 
-Feel free to check the [issues page](issues/).
+-   Github: [@defoebrand](https://github.com/defoebrand)
+-   LinkedIn: [@defoebrand](https://www.linkedin.com/in/defoebrand/)
+-   Gmail: <mailto:defoe.brand@gmail.com>
 
 ## Show your support
 
@@ -85,9 +75,8 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-TBA
+-   Microverse
 
 ## 📝 License
 
-TBA
-
+This project is [MIT](lic.url) licensed.
