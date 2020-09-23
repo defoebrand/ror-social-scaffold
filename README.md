@@ -6,13 +6,12 @@
 
 ## Built With
 
-- Ruby 
-- Ruby on Rails 
+-   Ruby
+-   Ruby on Rails
 
 ## Live Demo
 
-link
-
+[Live Link](https://immense-mountain-95079.herokuapp.com/)
 
 ## Getting Started
 
@@ -28,34 +27,27 @@ Postgres: >=9.5
 
 Instal gems with:
 
-```
-bundle install
-```
+    bundle install
 
 Setup database with:
 
-```
-   rails db:create
-   rails db:migrate
-```
+       rails db:create
+       rails db:migrate
 
 ### Github Actions
 
 To make sure the linters' checks using Github Actions work properly, you should follow the next steps:
 
-1. On your recently forked repo, enable the GitHub Actions in the Actions tab.
-2. Create the `feature/branch` and push.
-3. Start working on your milestone as usual.
-4. Open a PR from the `feature/branch` when your work is done.
-
+1.  On your recently forked repo, enable the GitHub Actions in the Actions tab.
+2.  Create the `feature/branch` and push.
+3.  Start working on your milestone as usual.
+4.  Open a PR from the `feature/branch` when your work is done.
 
 ### Usage
 
 Start server with:
 
-```
-    rails server
-```
+        rails server
 
 Open `http://localhost:3000/` in your browser.
 
@@ -63,9 +55,7 @@ Open `http://localhost:3000/` in your browser.
 
 > To run tests open the terminal and run `bundle exec rspec`
 
-```
-    rpsec --format documentation
-```
+        rpsec --format documentation
 
 ## Authors
 
@@ -79,7 +69,6 @@ Open `http://localhost:3000/` in your browser.
 -   LinkedIn: [@defoebrand](https://www.linkedin.com/in/defoebrand/)
 -   Gmail: <mailto:defoe.brand@gmail.com>
 
-
 ## Show your support
 
 Give a ⭐️ if you like this project!
@@ -91,4 +80,3 @@ Give a ⭐️ if you like this project!
 ## 📝 License
 
 This project is [MIT](lic.url) licensed.
-
