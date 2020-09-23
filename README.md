@@ -11,7 +11,7 @@
 
 ## Live Demo
 
-[Live Link](https://immense-mountain-95079.herokuapp.com/)
+Click the [Live Link](https://immense-mountain-95079.herokuapp.com/) to visit this site now!
 
 ## Getting Started
 
