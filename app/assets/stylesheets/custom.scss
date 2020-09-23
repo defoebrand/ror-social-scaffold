@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap");
 
-$primary-color-dark: #689f38;
-$primary-color: #8bc34a;
+$primary-color-dark: #00b3ff;
+$primary-color: #00b3ff;
 $primary-color-light: #dcedc8;
 $primary-color-text: #212121;
 $divider-color: #bdbdbd;
@@ -98,6 +98,19 @@ a {
   color: red;
 }
 
+.status {
+  text-transform: uppercase;
+  font-style: italic;
+  margin-top: 5px;
+  border: 1px solid #00b3ff;
+  color: #00b3ff;
+  width: 130px;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+}
+
 .new_comment,
 .new_post {
   display: flex;
@@ -167,20 +180,25 @@ form {
     margin: 8px 0;
   }
 
-  input[type="submit"] {
-    padding: 8px;
-    width: 50%;
-    border: none;
-    border-radius: 4px;
-    background-color: $primary-color-dark;
-    color: $primary-color-light;
+  input[type='submit'] {
+    border-radius: 3px;
     text-transform: uppercase;
     font-weight: 900;
+    background-color: $primary-color-dark;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    justify-content: center;
+    padding-bottom: calc(0.5em - 1px);
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: calc(0.5em - 1px);
+    text-align: center;
+    white-space: nowrap;
   }
 
   input[type="submit"]:hover {
-    background-color: $primary-color;
-    color: #fff;
+    opacity: 0.8;
   }
 
   .actions.reset {
@@ -283,12 +301,30 @@ form {
     margin-bottom: 16px;
     text-transform: capitalize;
     font-size: 1.2em;
+    padding: 15px 20px;
+    border-radius: 6px;
   }
 
   .profile-link {
     font-size: 0.8em;
-    margin: 0 0 8px;
+    margin: 10px 0 8px;
     color: $primary-color-dark;
+  }
+}
+
+.status-btn-tag {
+  display: flex;
+
+  form {
+    width: 90px;
+  }
+
+  input[type='submit'] {
+    min-width: 80px;
+  }
+
+  input[type='submit']:hover {
+    cursor: pointer;
   }
 }
 
